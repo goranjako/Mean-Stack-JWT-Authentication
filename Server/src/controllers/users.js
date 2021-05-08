@@ -18,17 +18,22 @@ class UsersController {
 
 
   // Get by id
-  async get(req, res) {
+  async getById(req, res) {
+    const _id=req.params.id;
+    if(_id) {
     try {
-        const obj = await Costumers.findById({ _id: req.params.id });
+        const obj = await Users.findById({_id});
         if (obj)
             return res.status(200).json(obj);
-        else { return res.status(404).json({ error: 'Costumer not found' }) };
-    } catch (err) {
-        return res.status(404).json({ error: err.message });
+        else {  };
+    } catch (error) {
+      return res.status(404).json({ error: 'User not found' });
     }
-}
-
+  }
+    else {
+      return res.status(401).send({success: false, msg: 'Unauthorized.'});
+     }
+  }
 
 async put (req,res){
 if (req.params.id && req.body) {
