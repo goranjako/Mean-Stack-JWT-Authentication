@@ -1,7 +1,7 @@
 import Users from "../models/user";
 
 class UsersController {
- 
+  // Get All
   async getAll(req, res,next) { 
     if (req.body) {
         try{
@@ -34,7 +34,7 @@ class UsersController {
       return res.status(401).send({success: false, msg: 'Unauthorized.'});
      }
   }
-
+ // Put by id
 async put (req,res){
 if (req.params.id && req.body) {
   try{
@@ -51,7 +51,7 @@ else {
 }
 };
 
-
+ // Delete by id
 async delete (req, res) {
 try {
     await Users.deleteOne({ _id: req.params.id }).exec();
