@@ -5,6 +5,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { JwtModule } from '@auth0/angular-jwt';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +13,8 @@ import { NavbarComponent } from './index/navbar/navbar.component';
 import { UserProfileComponent } from './index/user-profile/user-profile.component';
 import { NotFoundComponent } from './index/not-found/not-found.component';
 import { Interceptor } from './auth/interceptor.interceptor';
-import { QuicklinkModule } from "ngx-quicklink";
+import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
+
 
 
 @NgModule({
@@ -24,8 +26,9 @@ import { QuicklinkModule } from "ngx-quicklink";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-     NgxSpinnerModule, MDBBootstrapModule.forRoot(), SweetAlert2Module.forRoot(),QuicklinkModule,
+     NgxSpinnerModule, MDBBootstrapModule.forRoot(), SweetAlert2Module.forRoot(),
     FormsModule, ReactiveFormsModule, HttpClientModule,
     JwtModule.forRoot({
       config: {

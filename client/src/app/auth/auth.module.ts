@@ -7,6 +7,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { JwtModule } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Interceptor } from './interceptor.interceptor';
 import { AuthRoutingModule } from './auth-routing.module';
@@ -23,17 +24,11 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     AuthRoutingModule,  BrowserModule,
      NgxSpinnerModule, MDBBootstrapModule.forRoot(), SweetAlert2Module.forRoot(),
     FormsModule, ReactiveFormsModule, HttpClientModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: function tokenGetter() {
-          return localStorage.getItem('token');
-        },
-
-      }
-    })
+    
   ],
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
 })
