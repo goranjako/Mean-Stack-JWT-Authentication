@@ -12,7 +12,7 @@ import { NavbarComponent } from './index/navbar/navbar.component';
 import { UserProfileComponent } from './index/user-profile/user-profile.component';
 import { NotFoundComponent } from './index/not-found/not-found.component';
 import { Interceptor } from './auth/interceptor.interceptor';
-
+import { QuicklinkModule } from "ngx-quicklink";
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { Interceptor } from './auth/interceptor.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-     NgxSpinnerModule, MDBBootstrapModule.forRoot(), SweetAlert2Module.forRoot(),
+     NgxSpinnerModule, MDBBootstrapModule.forRoot(), SweetAlert2Module.forRoot(),QuicklinkModule,
     FormsModule, ReactiveFormsModule, HttpClientModule,
     JwtModule.forRoot({
       config: {
