@@ -14,6 +14,7 @@ import { NotFoundComponent } from './index/not-found/not-found.component';
 import { Interceptor } from './auth/interceptor.interceptor';
 import { QuicklinkModule } from "ngx-quicklink";
 
+
 @NgModule({
   declarations: [
     AppComponent,
