@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './index/not-found/not-found.component';
 import { UserProfileComponent } from './index/user-profile/user-profile.component';
-import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
+//import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 
 
 const routes: Routes = [
@@ -16,8 +16,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    QuicklinkModule,
-    RouterModule.forRoot(routes,{ preloadingStrategy: QuicklinkStrategy })],
+    //QuicklinkModule,
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

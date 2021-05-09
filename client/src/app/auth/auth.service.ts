@@ -4,7 +4,7 @@ import { User } from './user';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Sweetalert2Service } from 'src/app/shared/swal.service';
-import * as jwt_decode from 'jwt-decode';
+import jwt_decode from "jwt-decode";
 import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
