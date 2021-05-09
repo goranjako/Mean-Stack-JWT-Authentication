@@ -6,12 +6,12 @@ import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
 
 
 const routes: Routes = [
-  {path:'**',component: NotFoundComponent},
   {path:'profile', component:UserProfileComponent},
   { path:'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), data: {
-    preload: false
-  } }
- 
+    preload: true
+  }},
+  {path:'', pathMatch:'full',redirectTo: 'profile'},
+  {path:'**',component: NotFoundComponent},
 ];
 
 @NgModule({
