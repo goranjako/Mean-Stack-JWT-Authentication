@@ -46,15 +46,15 @@ export class LoginComponent implements OnInit {
       this.log.login(f).subscribe(
       res => {
         this.router.navigate(['/profile']);
-        this.toast.show('success', res.msg);
+        this.toast.show('success','You are successfully logged in');
         this.validationForm.reset();
         this.loading.hide();
-      },
-      err => {
-        this.toast.show('warning', err.error.msg);
+      }, 
+      error => {
+        this.toast.show('warning', error.message);  
         this.router.navigate(['/register']);
         this.validationForm.reset();
-        this.loading.hide();
+        this.loading.hide(); 
       }
     );
   }

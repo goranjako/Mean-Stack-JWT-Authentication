@@ -34,15 +34,15 @@ const   validateRegistrationBody = () => {
   }
   
   const validate = (req, res, next) => {
-    const errors = validationResult(req)
-    if (errors.isEmpty()) {
+    const error = validationResult(req)
+    if (error.isEmpty()) {
       return next()
     }
     const extractedErrors = []
-    errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
+    error.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
   
     return res.status(422).json({
-      errors: extractedErrors,
+      error: extractedErrors,
     })
   }
 

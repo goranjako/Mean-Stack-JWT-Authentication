@@ -26,18 +26,18 @@ var validateLoginBody = function validateLoginBody() {
 };
 
 var validate = function validate(req, res, next) {
-  var errors = validationResult(req);
+  var error = validationResult(req);
 
-  if (errors.isEmpty()) {
+  if (error.isEmpty()) {
     return next();
   }
 
   var extractedErrors = [];
-  errors.array().map(function (err) {
+  error.array().map(function (err) {
     return extractedErrors.push((0, _defineProperty2["default"])({}, err.param, err.msg));
   });
   return res.status(422).json({
-    errors: extractedErrors
+    error: extractedErrors
   });
 };
 

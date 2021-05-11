@@ -1,23 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 import { NotFoundComponent } from './index/not-found/not-found.component';
 import { UserProfileComponent } from './index/user-profile/user-profile.component';
-import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
+
 
 
 const routes: Routes = [
-  {path:'profile', component:UserProfileComponent},
-  { path:'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule), data: {
-    preload: true
-  }},
-  {path:'', pathMatch:'full',redirectTo: 'profile'},
+  {path:'register', component: RegisterComponent}, 
+  {path:'login', component: LoginComponent},
+  {path:'profile', component:UserProfileComponent, canActivate: [AuthGuard]},
+  {path:'', redirectTo:'login', pathMatch:'full'},
   {path:'**',component: NotFoundComponent},
 ];
 
-@NgModule({
+@NgModule({ 
   imports: [
-    QuicklinkModule,
-    RouterModule.forRoot(routes,{ preloadingStrategy: QuicklinkStrategy })],
+
+    RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

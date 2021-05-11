@@ -38,7 +38,7 @@ export class Sweetalert2Service {
         position: 'center',
         showConfirmButton: false,
         timer: 4000,
-        width: 300
+        width: 400
 
       });
       Toast.fire({

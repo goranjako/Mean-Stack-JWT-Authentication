@@ -13,7 +13,9 @@ import { NavbarComponent } from './index/navbar/navbar.component';
 import { UserProfileComponent } from './index/user-profile/user-profile.component';
 import { NotFoundComponent } from './index/not-found/not-found.component';
 import { Interceptor } from './auth/interceptor.interceptor';
-import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
+import { CommonModule } from '@angular/common';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
 
 
@@ -22,9 +24,12 @@ import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
     AppComponent,
     NavbarComponent,
     UserProfileComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -42,4 +47,4 @@ import { QuicklinkModule, QuicklinkStrategy } from 'ngx-quicklink';
   providers: [ { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { } 

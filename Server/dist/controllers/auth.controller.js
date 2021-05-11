@@ -39,13 +39,13 @@ var Auth = /*#__PURE__*/function () {
           if (err) {
             return res.json({
               success: false,
-              msg: 'Username already exists.'
+              message: 'Username already exists.'
             });
           }
 
           res.json({
             success: true,
-            msg: 'Successful created new user.'
+            message: 'Successful created new user.'
           });
         });
       }
@@ -61,7 +61,7 @@ var Auth = /*#__PURE__*/function () {
         if (!user) {
           res.status(401).send({
             success: false,
-            msg: 'Authentication failed. User not found.'
+            message: 'Authentication failed. User not found.'
           });
         } else {
           // check if password matches
@@ -77,9 +77,9 @@ var Auth = /*#__PURE__*/function () {
                 token: token
               });
             } else {
-              res.status(401).send({
+              res.status(422).send({
                 success: false,
-                msg: 'Authentication failed. Wrong password.'
+                message: 'Authentication failed. Wrong password.'
               });
             }
           });

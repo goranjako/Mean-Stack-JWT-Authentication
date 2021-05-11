@@ -12,7 +12,7 @@ class UsersController {
           return res.status(400).json({ error: err.message });
         }
     } else {
-      return res.status(401).send({success: false, msg: 'Unauthorized.'});
+      return res.status(401).send({success: false, msg: 'Unauthorized. Please check the email address and password and try again.'});
     }
   };
 

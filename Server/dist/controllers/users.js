@@ -24,7 +24,8 @@ var UsersController = /*#__PURE__*/function () {
 
   (0, _createClass2["default"])(UsersController, [{
     key: "getAll",
-    value: function () {
+    value: // Get All
+    function () {
       var _getAll = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res, next) {
         var products;
         return _regenerator["default"].wrap(function _callee$(_context) {
@@ -58,7 +59,7 @@ var UsersController = /*#__PURE__*/function () {
               case 13:
                 return _context.abrupt("return", res.status(401).send({
                   success: false,
-                  msg: 'Unauthorized.'
+                  msg: 'Unauthorized. Please check the email address and password and try again.'
                 }));
 
               case 14:
@@ -144,7 +145,8 @@ var UsersController = /*#__PURE__*/function () {
       }
 
       return getById;
-    }()
+    }() // Put by id
+
   }, {
     key: "put",
     value: function () {
@@ -207,7 +209,8 @@ var UsersController = /*#__PURE__*/function () {
     }()
   }, {
     key: "delete",
-    value: function () {
+    value: // Delete by id
+    function () {
       var _delete2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee4(req, res) {
         return _regenerator["default"].wrap(function _callee4$(_context4) {
           while (1) {

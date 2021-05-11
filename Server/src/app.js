@@ -27,7 +27,7 @@ mongoose.connect(mongodbURI)
   .then(db => {
     console.log('Connected to MongoDB');
   });
-
+  
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -37,9 +37,17 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passportManager.initialize());
+// enable cors
+var corsOption = {
+  origin: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  exposedHeaders: ['x-auth-token']
+};
+app.use(cors(corsOption));
 // routes setup
 setRoutes(app);
-app.use(passportManager.initialize());
 // catch 404 and forward to error handler
 app.use((req, res, next) =>{
   next(createError(404));
@@ -54,14 +62,9 @@ app.use((err, req, res, next) =>{
   res.status(err.status || 500);
   res.render('error');
 });
-// enable cors
-const corsOption = {
-  origin: true,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  exposedHeaders: ['token']
-};
-app.use(cors(corsOption));
+
+
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`server running on port ${port}..!!`));

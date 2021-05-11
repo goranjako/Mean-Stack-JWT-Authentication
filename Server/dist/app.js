@@ -64,10 +64,18 @@ app.use(_express["default"].json());
 app.use(_express["default"].urlencoded({
   extended: true
 }));
-app.use(_express["default"]["static"](_path["default"].join(__dirname, 'public'))); // routes setup
+app.use(_express["default"]["static"](_path["default"].join(__dirname, 'public')));
+app.use(_passport["default"].initialize()); // enable cors
 
-(0, _routes["default"])(app);
-app.use(_passport["default"].initialize()); // catch 404 and forward to error handler
+var corsOption = {
+  origin: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  exposedHeaders: ['x-auth-token']
+};
+app.use((0, _cors["default"])(corsOption)); // routes setup
+
+(0, _routes["default"])(app); // catch 404 and forward to error handler
 
 app.use(function (req, res, next) {
   next(createError(404));
@@ -80,15 +88,7 @@ app.use(function (err, req, res, next) {
 
   res.status(err.status || 500);
   res.render('error');
-}); // enable cors
-
-var corsOption = {
-  origin: true,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  exposedHeaders: ['token']
-};
-app.use((0, _cors["default"])(corsOption));
+});
 var port = process.env.PORT || 3000;
 app.listen(port, function () {
   return console.log("server running on port ".concat(port, "..!!"));

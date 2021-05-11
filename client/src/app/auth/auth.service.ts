@@ -42,7 +42,7 @@ getUser(id): Observable<any> {
 logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('token');
-    this.toast.show('warning', 'Logaut' );
+    this.toast.show('success', 'You have been successfully logged out' );
 }
 
 
@@ -59,9 +59,9 @@ public isLoggedIn() {
 
 errorHandl(error) {
   let errorMessage = '';
-  if (error.error instanceof ErrorEvent) {
+  if (error instanceof ErrorEvent) {
     // Get client-side error
-    errorMessage = error.error.message;
+    errorMessage = error.error;
   } else {
     // Get server-side error
     errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;

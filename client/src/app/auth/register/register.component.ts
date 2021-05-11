@@ -51,8 +51,8 @@ export class RegisterComponent implements OnInit {
         this.validationForm.reset();
 
       },
-   err => {
-        this.toast.show('warning', err.error.msg);
+   error => {
+        this.toast.show('warning', error.message);
         this.validationForm.reset();
         this.loading.hide();
   }
