@@ -6,21 +6,31 @@ import { map } from 'rxjs/operators';
 import { Sweetalert2Service } from 'src/app/shared/swal.service';
 import jwt_decode from "jwt-decode";
 import { retry, catchError } from 'rxjs/operators';
+import { environment } from 'src/environments/environment.prod';
+  
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    // tslint:disable-next-line:object-literal-key-quotes
+
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor(private http: HttpClient, private toast: Sweetalert2Service) {}
+  apiURL;
+  constructor(private http: HttpClient, private toast: Sweetalert2Service) {
+    this.apiURL = environment.api;}
 
   register(user): Observable<User> {
-    return this.http.post<User>('http://localhost:3000/register', user);
+    return this.http.post<User>(this.apiURL +'/register', user);
   }
 
 
   login(authCredentials) {
-    return this.http.post<any>('http://localhost:3000/login', authCredentials)
+    return this.http.post<any>(this.apiURL +'/login', authCredentials)
         .pipe(map(user => {
             // login successful if there's a jwt token in the response
             if (user && user.token) {
@@ -32,7 +42,7 @@ export class AuthService {
 }
 
 getUser(id): Observable<any> {
-  return this.http.get<any>('http://localhost:3000/users/' + id)
+  return this.http.get<any>(this.apiURL +'/user' + id)
   .pipe(
     retry(1),
     catchError(this.errorHandl)

@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
      this.logService.register(f).subscribe(
       res => {
         this.loading.hide();
-        this.toast.show('success', res.msg);
+        this.toast.show('success', res.message);
         this.router.navigate(['/login']);
         this.validationForm.reset();
 
